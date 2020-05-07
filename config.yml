@@ -1,0 +1,7 @@
+DATASET:
+  INPUT_DIR: " "
+  INPUT_IMG_LIST: ["campus_001.jpg", "campus_002.jpg", "campus_003.jpg", "campus_004.jpg"]
+  OUTPUT_DIR: " "
+
+FEATURES:
+  FEATURE_DESCRIPTORS: "sift"
