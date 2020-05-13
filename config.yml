@@ -1,7 +1,9 @@
 DATASET:
-  INPUT_DIR: " "
+  INPUT_DIR: "/home/arshita/Desktop/opencv_projects/image_stiching/pano_test/mid_pano_test"
   INPUT_IMG_LIST: ["campus_001.jpg", "campus_002.jpg", "campus_003.jpg", "campus_004.jpg"]
-  OUTPUT_DIR: " "
+  OUTPUT_DIR: "/home/arshita/Desktop/github/Image_Stitching/results"
 
 FEATURES:
-  FEATURE_DESCRIPTORS: "sift"
+  FEATURE_DESCRIPTORS: "SIFT" #['SIFT', 'SURF',  ORB]
+  FEATURE_MATCHING: (Brute_Force, NORM_L2) #(Brute_Force, NORM_HAMMING)
+  FEATURE_MATCHING_THRESHOLD: 0.75

@@ -35,17 +35,25 @@ class ImageStitching():
         kps_list=[]
         descs_list=[]
         for img in img_list:
-            if self.cfg.FEATURES.FEATURE_DESCRIPTORS == "sift":
-                sift = cv2.xfeatures2d.SIFT_create()
-                (kps, descs) = sift.detectAndCompute(img, None)
-                kps_list.append(kps)
-                descs_list.append(descs)
-            elif self.cfg.FEATURES.FEATURE_DESCRIPTORS == "surf":
-                pass
-                # NOTE: TODO
+            if self.cfg.FEATURES.FEATURE_DESCRIPTORS == "SIFT":
+                get_features = cv2.xfeatures2d.SIFT_create()
+
+            elif self.cfg.FEATURES.FEATURE_DESCRIPTORS == "SURF":
+                get_features = cv2.xfeatures2d.SURF_create()
+                #NOTE: add threshold
+
+            elif self.cfg.FEATURES.FEATURE_DESCRIPTORS == "ORB":
+                get_features = cv2.ORB_create()
+
             else:
-                pass
-                # NOTE: Raise Error (Feature Descriptor not found)
+                raise ValueError("'{}' feature descriptor is not defined. Check Config.yaml file. \
+                ".format( self.cfg.FEATURES.FEATURE_DESCRIPTORS))
+
+            (kps, descs) = get_features.detectAndCompute(img, None)
+
+            kps_list.append(kps)
+            descs_list.append(descs)
+
         return kps_list, descs_list
 
     def draw_keypoints(self, raw_img_list, gray_img_list, kps_list, descs_list):
@@ -63,22 +71,37 @@ class ImageStitching():
                         img_keypoints)
         print(f'Saving images with keypoints.')
 
-    def get_best_matches(self, img, kps, descs, T:float=0.5):
+
+    def get_best_matches(self, img, kps, descs):
         '''
         Feature Matching
         '''
 
-        bf = cv2.BFMatcher()
-        matches = bf.knnMatch(descs[0], descs[1], k=2)
+        fm = tuple(k.strip() for k in self.cfg.FEATURES.FEATURE_MATCHING[1:-1].split(','))
+
+        if fm[0] == "Brute_Force" and fm[1] == "NORM_L2":
+            assert (self.cfg.FEATURES.FEATURE_DESCRIPTORS == "SIFT" or
+                    self.cfg.FEATURES.FEATURE_DESCRIPTORS == "SURF" ), "Check FEATURE_DESCRIPTORS"
+            bf = cv2.BFMatcher()
+            matches = bf.knnMatch(descs[0], descs[1], k=2)
+
+        if fm[0] == "Brute_Force" and fm[1] == "NORM_HAMMING":
+            assert (self.cfg.FEATURES.FEATURE_DESCRIPTORS == "ORB" or
+                    self.cfg.FEATURES.FEATURE_DESCRIPTORS == "BRIEF" or
+                    self.cfg.FEATURES.FEATURE_DESCRIPTORS == "BRISK"), "Check FEATURE_DESCRIPTORS"
+            bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=False)
+            matches = bf.knnMatch(descs[0], descs[1], k=2)
+
         good = []
         for m,n in matches:
-            if m.distance < T*n.distance:
+            if m.distance < self.cfg.FEATURES.FEATURE_MATCHING_THRESHOLD*n.distance:
                 good.append([m])
 
         res_img = cv2.drawMatchesKnn(img[0], kps[0], img[1], kps[1], good, None, flags=2)
         cv2.imwrite(os.path.join(self.result_dir, 'matched_points.jpg'), res_img)
 
         return np.asarray(good)
+
 
     def get_homography_matrix(self, matches, kps):
         '''
