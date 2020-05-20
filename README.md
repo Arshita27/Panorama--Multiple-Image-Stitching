@@ -39,10 +39,12 @@ There are only two things you have to keep in mind while running this repository
 1. __config.yml__ file:
 
     This yaml file contains the following fields:
+
   *  *DATASET*:
     - *INPUT_DIR*: Path to the folder where all the images are stored.
     - *INPUT_IMG_LIST*: List of Images.
     - *OUTPUT_DIR*: Path to the folder where all the results should be stored.
+
   * *FEATURES*:
     - *FEATURE_DESCRIPTORS*: Default is set (Other choices are provided in comments)
     - *FEATURE_MATCHING*: Default is set (Other choices are provided in comments)
