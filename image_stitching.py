@@ -20,14 +20,14 @@ class ImageStitching():
         return [cv2.imread(os.path.join(self.root_path, file_path))
                 for file_path in self.cfg.DATASET.INPUT_IMG_LIST]
 
-    def convert_2_gray(self, img_list:List):
+    def convert_2_gray(self, img_list: List):
         '''
         Converts image into gray scale.
         '''
 
         return [cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) for img in img_list]
 
-    def get_feature_desc(self, img_list:List):
+    def get_feature_desc(self, img_list: List):
         '''
         Feature descriptor
         '''
@@ -56,8 +56,9 @@ class ImageStitching():
 
         return kps_list, descs_list
 
-    def draw_keypoints(self, raw_img_list, gray_img_list, kps_list, descs_list):
+    def draw_keypoints(self, raw_img_list: List, gray_img_list: List, kps_list, descs_list):
         '''
+        Draw key points
         '''
 
         for i, raw_img in enumerate(raw_img_list):
@@ -104,7 +105,9 @@ class ImageStitching():
 
 
     def get_homography_matrix(self, matches, kps):
+
         '''
+        get homography matrix
         '''
 
         if len(matches[:,0]) >= 4:
@@ -115,6 +118,7 @@ class ImageStitching():
         return H
 
     def get_warped_image(self, img, H):
+
         '''
         '''
 
@@ -127,13 +131,14 @@ class ImageStitching():
 
 
     def detect_corners_from_contour(self, contour):
-        """
+
+        '''
         Detecting corner points form contours using cv2.approxPolyDP()
         Args:
             contour: list
         Returns:
             approx_corners: np.array
-        """
+        '''
 
         epsilon = 0.02 * cv2.arcLength(contour, True)
         approx_corners = cv2.approxPolyDP(contour, epsilon, True)
@@ -144,6 +149,11 @@ class ImageStitching():
 
 
     def contour_fitting(self, img):
+
+        '''
+        This will fit contour on the image and remove the excess black outline
+        that usually occurs after an image is warped.
+        '''
 
         w = img.shape[1]
         h = img.shape[0]

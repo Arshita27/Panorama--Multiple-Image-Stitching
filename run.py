@@ -1,11 +1,11 @@
 import argparse
 import os
 from typing import List
-import yaml
 
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
+import yaml
 
 from config import ConfigNode
 from image_stitching import ImageStitching
