@@ -17,8 +17,7 @@ Image stitching is a basic concept in the field of Image Processing that is used
 ##### Warp image
 
 ### Requirements:
-Firstly, this project is based on Python and I highly recommend to create a Python virtual enviroment. This python virtual enviroment is an isolated container the helps you ....
-( https://heartbeat.fritz.ai/creating-python-virtual-environments-with-conda-why-and-how-180ebd02d1db ).
+Firstly, this project is based on Python and I highly recommend to create a Python virtual enviroment. __(mention details on how to set up and best way possible)__
 There are multiple ways of creating a virtual enviroment, two of them being:
 1. __virtualenv__ or __venv__ (builtin Python 3)
 2. __conda env__ (using Anaconda)
@@ -41,9 +40,9 @@ There are only two things you have to keep in mind while running this repository
   This yaml file contains the following fields:
 
   * *DATASET*:
-    - *INPUT_DIR*: Path to the folder where all the images are stored.
+    - *INPUT_DIR*: Path to the folder where all the images are stored. (default=test)
     - *INPUT_IMG_LIST*: List of Images.
-    - *OUTPUT_DIR*: Path to the folder where all the results should be stored.
+    - *OUTPUT_DIR*: Path to the folder where all the results should be stored. (default=results)
 
   * *FEATURES*:
     - *FEATURE_DESCRIPTORS*: Default is set (Other choices are provided in comments)
