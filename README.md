@@ -1,4 +1,4 @@
-## Image Stitching
+## Image Stitching (Work In Progress)
 
 Image stitching is a basic concept in the field of Image Processing that is used in order to form 'Panaroma' images. If you are not fully aware of how image stitching works then go ahead and read the next section. Otherwise, you can directly jump to the 'Requirements' and 'Implementation' section of this repository.
 
@@ -40,7 +40,7 @@ There are only two things you have to keep in mind while running this repository
 
   This yaml file contains the following fields:
 
-  *  *DATASET*:
+  * *DATASET*:
     - *INPUT_DIR*: Path to the folder where all the images are stored.
     - *INPUT_IMG_LIST*: List of Images.
     - *OUTPUT_DIR*: Path to the folder where all the results should be stored.
