@@ -1,23 +1,37 @@
 ## Image Stitching (Work In Progress)
 
-Image stitching is a basic concept in the field of Image Processing that is used in order to form 'Panaroma' images. If you are not fully aware of how image stitching works then go ahead and read the next section. Otherwise, you can directly jump to the 'Requirements' and 'Implementation' section of this repository.
+Image stitching is a basic concept in the field of Image Processing that is used in order to form 'Panaroma'. If you are not fully aware of how image stitching works then go ahead and read the next section. Otherwise, you can directly jump to the 'Requirements' and 'Implementation' section of this repository.
 
 ### Introduction:
+Let's first dive into the key points used in Image stitching:
+
 ##### Feature descriptor:
-1. SIFT
-2. SURF
-3. ORB
+
+Feature descriptors are dense representations that best describe the contents of a given image. Following are some feature descriptors used widely. (The description of each method is out of scope of this repository, please check out the associated link (if any) for more information)
+
+1. Scale Invarient Feature Transform (SIFT):
+2. Speeded Up Robust Features (SURF):
+3. Oriented Fast and Robust BRIEF (ORB):
 
 ##### Feature matching:
 
+While creating panorama by stitching two images together, we require some ammount of overlap between these two images. Feature matching, as the name suggests, is used to match features between these two images in order to find the overlap.
+1. Brute Force : Matches feature set in one image with feature set in second image using the following distance:
+  1. L2
+  2. Hamming
+
 ##### Get top n best features:
+Choose those set of features  with highest match.
 
-##### RANSAC to get homography matrix:
+##### Obtain Homography Matrix:
+(incomplete)
+Random sample consensus or RANSAC is a method used for fitting models to data.
 
-##### Warp image
+##### Warp Image:
+(incomplete)
 
 ### Requirements:
-Firstly, this project is based on Python and I highly recommend to create a Python virtual enviroment. __(mention details on how to set up and best way possible)__
+Firstly, this project is based on Python and I highly recommend to create a Python virtual enviroment.
 There are multiple ways of creating a virtual enviroment, two of them being:
 1. __virtualenv__ or __venv__ (builtin Python 3)
 2. __conda env__ (using Anaconda)
