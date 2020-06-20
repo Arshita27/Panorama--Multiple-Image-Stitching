@@ -1,8 +1,8 @@
-## Image Stitching (Work In Progress)
+## Image Stitching
 
 Image stitching is a basic concept in the field of Image Processing that is used in order to form 'Panaroma'. If you are not fully aware of how image stitching works then go ahead and read the next section. Otherwise, you can directly jump to the 'Requirements' and 'Implementation' section of this repository.
 
-### Introduction:
+### Introduction: (Work In Progress)
 Let's first dive into the key points used in Image stitching:
 
 ##### Feature descriptor:
@@ -17,8 +17,8 @@ Feature descriptors are dense representations that best describe the contents of
 
 While creating panorama by stitching two images together, we require some ammount of overlap between these two images. Feature matching, as the name suggests, is used to match features between these two images in order to find the overlap.
 1. Brute Force : Matches feature set in one image with feature set in second image using the following distance:
-  1. L2
-  2. Hamming
+    1. L2
+    2. Hamming
 
 ##### Get top n best features:
 Choose those set of features  with highest match.
