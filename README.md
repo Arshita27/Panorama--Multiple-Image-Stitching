@@ -2,6 +2,17 @@
 
 Image stitching is a basic concept in the field of Image Processing that is used in order to form 'Panaroma'. If you are not fully aware of how image stitching works then go ahead and read the next section. Otherwise, you can directly jump to the 'Requirements' and 'Implementation' section of this repository.
 
+
+
+<img src="/test/campus_001.jpg" height="320" width="240">
+<img src="/test/campus_002.jpg" height="320" width="240">
+<img src="/test/campus_003.jpg" height="320" width="240">
+<img src="/test/campus_004.jpg" height="320" width="240">
+
+<img src="/results/final_output.jpg" height="320" width="960" >
+
+
+
 ### Introduction: (Work In Progress)
 Let's first dive into the key points used in Image stitching:
 
@@ -55,7 +66,7 @@ There are only two things you have to keep in mind while running this repository
 
   * *DATASET*:
     - *INPUT_DIR*: Path to the folder where all the images are stored. (default=test)
-    - *INPUT_IMG_LIST*: List of Images.
+    - *INPUT_IMG_LIST*: List of Images. __(Taken from left to right, that is, the list should start with image that should appear at the left most part of the panorama)__
     - *OUTPUT_DIR*: Path to the folder where all the results should be stored. (default=results)
 
   * *FEATURES*:
@@ -65,6 +76,6 @@ There are only two things you have to keep in mind while running this repository
 
   One can simply change the parameters in the config file to try the effect of the different techniques.
 
-2.  Command to run the program ``` python -m run --c [path to config.yml]  ```
+2.  __Command to run the program__ ``` python -m run --c [path to config.yml]  ```
 
     I have kept the path to config.yml as an argument so that the user can have multiple config files corresponding to different projects (with different images and varied feature attributes)
