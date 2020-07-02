@@ -3,11 +3,12 @@
 Image stitching is a basic concept in the field of Image Processing that is used in order to form 'Panaroma'. If you are not fully aware of how image stitching works then go ahead and read the next section. Otherwise, you can directly jump to the 'Requirements' and 'Implementation' section of this repository.
 
 
-
-<img src="/test/campus_001.jpg" height="320" width="240">
-<img src="/test/campus_002.jpg" height="320" width="240">
-<img src="/test/campus_003.jpg" height="320" width="240">
-<img src="/test/campus_004.jpg" height="320" width="240">
+<p float="left">
+  <img src="/test/campus_001.jpg" height="320" width="240">
+  <img src="/test/campus_002.jpg" height="320" width="240">
+  <img src="/test/campus_003.jpg" height="320" width="240">
+  <img src="/test/campus_004.jpg" height="320" width="240">
+</p>
 
 <img src="/results/final_output.jpg" height="320" width="960" >
 
