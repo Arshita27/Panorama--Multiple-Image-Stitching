@@ -5,6 +5,7 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
+import multi_band_blending as mbb
 
 class ImageStitching():
     def __init__(self, cfg ):
@@ -174,3 +175,34 @@ class ImageStitching():
         new_image = cv2.warpPerspective(img, M, (w, h))
 
         return new_image
+
+    def mutli_band_blending(self, raw_img, warped_img):
+
+        """
+        multi-band blending:
+        args:
+            raw_img: original image, here left image
+            warped_img: right image which is warped
+        """
+
+        # find overlap width:
+        arr = np.zeros([warped_img.shape[0], warped_img.shape[1]-raw_img.shape[1], 3],
+                        dtype=np.uint8)
+        new_raw_img = cv2.hconcat([raw_img, arr])
+        intersection = new_raw_img & warped_img
+
+        positions = np.nonzero(intersection)
+        overlap_width = positions[1].max() - positions[1].min()
+
+        if overlap_width % 2 != 0:
+            overlap_width = overlap_width + 1
+
+        # cutting out only the warped image by removing intiial 0 (black) pixels.
+        positions_warped = np.nonzero(warped_img)
+        new_warped_img = warped_img[:, positions_warped[1].min(): positions_warped[1].max()+1, :]
+
+        res = mbb.multi_band_blending(img1=raw_img,
+                                    img2=new_warped_img,
+                                    overlap_w=overlap_width)
+
+        return res

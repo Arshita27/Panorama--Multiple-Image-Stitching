@@ -35,11 +35,18 @@ def main(cfg):
 
         dst = panaroma.get_warped_image(raw_image_list[0:2], H)
 
-        dst[0:raw_image_list[0].shape[0], 0:raw_image_list[0].shape[1]] = raw_image_list[0]
+        apply_blending=False
 
-        dst = panaroma.contour_fitting(dst)
+        if cfg.BLENDING:
+            res = panaroma.mutli_band_blending(raw_image_list[0], dst)
+            res = res.astype('uint8')
+            dst = panaroma.contour_fitting(res)
+        else:
+            dst[0:raw_image_list[0].shape[0], 0:raw_image_list[0].shape[1]] = raw_image_list[0]
+            dst = panaroma.contour_fitting(dst)
 
         dst = dst.astype('uint8')
+
         cv2.imwrite(os.path.join(cfg.DATASET.OUTPUT_DIR, str(count) + 'output.jpg'),dst)
 
         all_raw_image_list = [dst] + all_raw_image_list
