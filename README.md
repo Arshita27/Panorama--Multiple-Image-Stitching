@@ -4,14 +4,19 @@ Image stitching is a basic concept in the field of Image Processing that is used
 
 
 <p float="left">
-  <img src="/test/campus_001.jpg" height="320" width="240">
-  <img src="/test/campus_002.jpg" height="320" width="240">
-  <img src="/test/campus_003.jpg" height="320" width="240">
-  <img src="/test/campus_004.jpg" height="320" width="240">
+  <img src="/test/campus_001.jpg" height="240" width="180">
+  <img src="/test/campus_002.jpg" height="240" width="180">
+  <img src="/test/campus_003.jpg" height="240" width="180">
+  <img src="/test/campus_004.jpg" height="240" width="180">
 </p>
 
-<img src="/results/final_output.jpg" height="320" width="960" >
+without blending:
 
+<img src="/results/final_output.jpg" height="240" width="720" >
+
+with (multi-band) blending:
+
+<img src="/results/final_output_blended.jpg" height="240" width="720" >
 
 
 ### Introduction: (Work In Progress)
@@ -74,6 +79,8 @@ There are only two things you have to keep in mind while running this repository
     - *FEATURE_DESCRIPTORS*: Default is set (Other choices are provided in comments)
     - *FEATURE_MATCHING*: Default is set (Other choices are provided in comments)
     - *FEATURE_MATCHING_THRESHOLD*: Default is set (Other choices are provided in comments)
+    
+  * *BLENDING*: bool value, default to True
 
   One can simply change the parameters in the config file to try the effect of the different techniques.
 
